@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fava.si - Portfolio | Dalla Pixel alla Pietra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            600: '#57534e',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        copper: {
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1c1917;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #44403c;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f97316;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #fafaf9 0%, #a8a29e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Marble Texture Effect */
+        .marble-bg {
+            background-color: #1c1917;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(120, 113, 108, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(249, 115, 22, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(68, 64, 60, 0.2) 0px, transparent 50%);
+        }
+
+        /* Hide elements initially for scroll animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Hover Effect */
+        .project-card {
+            overflow: hidden;
+            position: relative;
+        }
+        .project-card img {
+            transition: transform 0.6s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        .project-overlay {
+            background: linear-gradient(to top, rgba(28, 25, 23, 0.95) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        /* Timeline Line */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #f97316, #44403c);
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-900 text-stone-100 font-sans antialiased marble-bg">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-stone-900/80 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-serif text-2xl font-bold gradient-text tracking-tight">Fava.si</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Chi Sono</a>
+                        <a href="#experience" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Percorso</a>
+                        <a href="#projects" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Progetti</a>
+                        <a href="#contact" class="bg-copper-600 hover:bg-copper-500 text-white px-4 py-2 rounded-full text-sm font-medium transition-all">Contatti</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-stone-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-800 border-b border-stone-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Chi Sono</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Percorso</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Progetti</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-copper-500">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-copper-600/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-stone-700/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="reveal active">
+                <p class="text-copper-500 font-medium tracking-widest uppercase mb-4 text-sm">Portfolio Professionale</p>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                    <span class="gradient-text">Dalla Pixel</span><br>
+                    <span class="text-stone-400">alla Pietra</span><br>
+                    <span class="text-copper-500">al Metallo</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-xl text-stone-400 leading-relaxed">
+                    Costruisco con precisione e passione. Un percorso che unisce creatività digitale,
+                    manualità artigiana e ingegneria automobilistica.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#projects" class="bg-copper-600 hover:bg-copper-500 text-white px-8 py-4 rounded-full font-medium transition-all transform hover:scale-105">
+                        Vedi i Progetti
+                    </a>
+                    <a href="#contact" class="border border-stone-600 hover:border-copper-500 text-stone-300 hover:text-copper-500 px-8 py-4 rounded-full font-medium transition-all">
+                        Contattami
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 reveal">
+                <div class="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-copper-500 mb-2">5+</div>
+                        <div class="text-sm text-stone-400 uppercase tracking-wider">Anni di Esperienza</div>
+                    </div>
+                    <div class="p-4 border-x border-stone-800">
+                        <div class="text-3xl font-bold text-copper-500 mb-2">3</div>
+                        <div class="text-sm text-stone-400 uppercase tracking-wider">Settori Diversi</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-copper-500 mb-2">∞</div>
+                        <div class="text-sm text-stone-400 uppercase tracking-wider">Passione</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-stone-800 border border-stone-700">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop"
+                                 alt="Simone - Ritratto professionale"
+                                 class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-copper-600/20 rounded-full blur-2xl"></div>
+                        <div class="absolute -top-6 -left-6 w-32 h-32 border border-copper-500/30 rounded-2xl"></div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">
+                        Costruttore di <span class="text-copper-500">idee concrete</span>
+                    </h2>
+                    <div class="space-y-4 text-stone-300 leading-relaxed text-lg">
+                        <p>
+                            Mi chiamo Simone, ho 24 anni e porto con me un percorso non convenzionale che considero il mio punto di forza.
+                            Non ho seguito il percorso classico: dopo il diploma in <strong class="text-stone-100">Grafica Multimediale</strong>,
+                            l'università è stata un interludio formativo interrotto dalla necessità di mettere le mani "in pasta reale".
+                        </p>
+                        <p>
+                            Da lì, una scalata verticale attraverso mondi apparentemente distanti ma uniti da un filo conduttore:
+                            la <strong class="text-stone-100">precisione</strong>, la <strong class="text-stone-100">pazienza</strong>
+                            e la <strong class="text-stone-100">trasformazione della materia</strong>.
+                        </p>
+                        <p>
+                            Oggi unisco la visione digitale del grafico alla manualità del marmista e al problem-solving dell'appassionato
+                            di motorsport. Ogni progetto è una lastra da scolpire, un telaio da costruire, un'identità visiva da creare.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-copper-500 rounded-full"></div>
+                            <span class="text-stone-400">Precisione millimetrica</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-copper-500 rounded-full"></div>
+                            <span class="text-stone-400">Problem solving</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-copper-500 rounded-full"></div>
+                            <span class="text-stone-400">Attenzione ai dettagli</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-copper-500 rounded-full"></div>
+                            <span class="text-stone-400">Versatilità tecnica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-24 bg-stone-950/50 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Il mio <span class="text-copper-500">percorso</span></h2>
+                <p class="text-stone-400 text-lg">Ogni esperienza ha costruito il professionista che sono oggi</p>
+            </div>
+
+            <div class="relative timeline-line space-y-12">
+                <!-- Graphic Design -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2017 - 2019</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Diploma Grafica Multimediale</h3>
+                                <p class="text-stone-400 text-sm">Formazione base nell'estetica digitale, composizione visiva e software di design. Qui è nato il mio occhio per il dettaglio.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-copper-500 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <!-- Logistics -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 hidden md:block"></div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-stone-600 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8 mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2019 - 2021</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Magazziniere Tessile</h3>
+                                <p class="text-stone-400 text-sm">Gestione logistica di rotoli di pezze, codici a barre e sistemi di tracciamento. Ho imparato l'organizzazione metodica e la precisione nei dettagli numerici.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marble Worker -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-20 h-20 bg-copper-600/10 rounded-full blur-xl"></div>
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2021 - 2026</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Apprendista Marmista</h3>
+                                <p class="text-stone-400 text-sm mb-3">5 anni di formazione artigiana intensiva:</p>
+                                <ul class="text-stone-400 text-sm space-y-1">
+                                    <li>• Realizzazione lapidi e cippi funerari</li>
+                                    <li>• Lavorazione personalizzata lastre</li>
+                                    <li>• Gestione clientela e sopralluoghi</li>
+                                    <li>• Finiture e installazioni</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-copper-500 rounded-full border-4 border-stone-900 ring-4 ring-copper-500/20"></div>
+                        <div class="md:w-5/12 md:pl-8 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <!-- Automotive -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 hidden md:block"></div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-stone-600 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2020 - Presente</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Progetto BMW Drift (Hobby)</h3>
+                                <p class="text-stone-400 text-sm">Costruzione da zero di un'auto da drift con mio fratello. Progettazione meccanica, problem solving complessi e realizzazione pratica di un sogno su quattro ruote.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">I miei <span class="text-copper-500">lavori</span></h2>
+                <p class="text-stone-400 text-lg max-w-2xl mx-auto">
+                    Alcuni esempi delle mie creazioni. Clicca sulle categorie per filtrare.
+                </p>
+
+                <!-- Filter Buttons -->
+                <div class="mt-8 flex flex-wrap justify-center gap-3">
+                    <button class="filter-btn active px-6 py-2 rounded-full border border-copper-600 bg-copper-600 text-white text-sm font-medium transition-all" data-filter="all">Tutti</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="marble">Marmo</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="automotive">Automotive</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="design">Grafica</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+                <!-- Project 1: Marble -->
+                <div class="project-card group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal" data-category="marble">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&h=600&fit=crop"
+                             alt="Lapide in marmo"
+                             class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <span class="text-copper-400 text-xs font-bold tracking-wider uppercase">Marmo</span>
+                                <h3 class="text-white font-bold text-lg mt-1">Lapidi e Cippi</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stone-400 text-sm">Realizzazione di monumenti funerari personalizzati con incisioni e finiture manuali.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: Marble -->
+                <div class="project-card group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal" data-category="marble">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&h=600&fit=crop"
+                             alt="Lastra personalizzata"
+                             class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <span class="text-copper-400 text-xs font-bold tracking-wider uppercase">Marmo</span>
+                                <h3 class="text-white font-bold text-lg mt-1">Lastre Personalizzate</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stone-400 text-sm">Lavorazioni su misura per arredi interni, piani cucina e rivestimenti decorativi.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: Automotive -->
+                <div class="project-card group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal" data-category="automotive">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&h=600&fit=crop"
+                             alt="Progetto BMW Drift"
+                             class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <span class="text-copper-400 text-xs font-bold tracking-wider uppercase">Automotive</span>
+                                <h3 class="text-white font-bold text-lg mt-1">BMW Drift Build</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stone-400 text-sm">Costruzione completa da telaio nudo ad auto da corsa. Roll cage, sospensioni, motore.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4: Automotive -->
+                <div class="project-card group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal" data-category="automotive">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&h=600&fit=crop"
+                             alt="Dettaglio meccanico"
+                             class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <span class="text-copper-400 text-xs font-bold tracking-wider uppercase">Automotive</span>
+                                <h3 class="text-white font-bold text-lg mt-1">Dettagli Tecnici</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stone-400 text-sm">Lavorazioni meccaniche personalizzate, saldature e modifiche strutturali.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5: Design -->
+                <div class="project-card group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal" data-category="design">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop"
+                             alt="Progetto grafico"
+                             class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <span class="text-copper-400 text-xs font-bold tracking-wider uppercase">Grafica</span>
+                                <h3 class="text-white font-bold text-lg mt-1">Brand Identity</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stone-400 text-sm">Progetti di branding e identità visiva realizzati durante il percorso di studi.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6: Design -->
+                <div class="project-card group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal" data-category="design">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop"
+                             alt="Digital design"
+                             class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <span class="text-copper-400 text-xs font-bold tracking-wider uppercase">Grafica</span>
+                                <h3 class="text-white font-bold text-lg mt-1">Digital Design</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-stone-400 text-sm">Interfacce utente e progetti digitali multimediali.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-24 bg-stone-950/30 border-y border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Competenze <span class="text-copper-500">trasversali</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Digital -->
+                <div class="reveal bg-stone-900/50 p-8 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group">
+                    <div class="w-14 h-14 bg-stone-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-7 h-7 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-100">Digitale</h3>
+                    <ul class="space-y-2 text-stone-400">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Graphic Design
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Brand Identity
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            UI/UX Basics
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Adobe Creative Suite
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Manual -->
+                <div class="reveal bg-stone-900/50 p-8 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-stone-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-7 h-7 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-100">Manuale</h3>
+                    <ul class="space-y-2 text-stone-400">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Lavorazione marmi/pietre
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Incisioni e finiture
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Installazioni
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Gestione commesse
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mechanical -->
+                <div class="reveal bg-stone-900/50 p-8 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-stone-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-7 h-7 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-100">Meccanica</h3>
+                    <ul class="space-y-2 text-stone-400">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Progettazione automotive
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Modifiche strutturali
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Problem solving
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Precisione meccanica
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Mettiamoci in <span class="text-copper-500">contatto</span></h2>
+                <p class="text-stone-400 text-lg">Pronto per nuove sfide. Parliamo del tuo progetto.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal space-y-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-stone-200">Informazioni di contatto</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-stone-800 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-stone-500">Email</p>
+                                    <p class="text-stone-200">simonefavaro85@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-stone-800 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-stone-500">Località</p>
+                                    <p class="text-stone-200">Italia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-stone-200">Scarica il CV</h3>
+                        <a href="#" class="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-stone-200 px-6 py-3 rounded-full transition-all border border-stone-700 hover:border-copper-500/50">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Download CV PDF
+                        </a>
+                    </div>
+                </div>
+
+                <form class="reveal space-y-6 bg-stone-800/30 p-8 rounded-2xl border border-stone-800" style="transition-delay: 100ms;">
+                    <div>
+                        <label class="block text-sm font-medium text-stone-400 mb-2">Nome</label>
+                        <input type="text" class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-stone-200 focus:outline-none focus:border-copper-500 transition-colors" placeholder="Il tuo nome">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-400 mb-2">Email</label>
+                        <input type="email" class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-stone-200 focus:outline-none focus:border-copper-500 transition-colors" placeholder="tua@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-400 mb-2">Messaggio</label>
+                        <textarea rows="4" class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-stone-200 focus:outline-none focus:border-copper-500 transition-colors" placeholder="Raccontami il tuo progetto..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-copper-600 hover:bg-copper-500 text-white font-medium py-3 rounded-lg transition-all transform hover:scale-[1.02]">
+                        Invia Messaggio
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 border-t border-stone-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <span class="font-serif text-2xl font-bold gradient-text">Simone.</span>
+                <p class="text-stone-500 text-sm mt-1">Costruisco con precisione e passione.</p>
+            </div>
+            <div class="text-stone-600 text-sm">
+                © 2026 Simone. Tutti i diritti riservati.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    menu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Scroll Animation using Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-copper-600', 'text-white', 'border-copper-600');
+                    b.classList.add('text-stone-400', 'border-stone-600');
+                });
+                // Add active class to clicked button
+                btn.classList.add('active', 'bg-copper-600', 'text-white', 'border-copper-600');
+                btn.classList.remove('text-stone-400', 'border-stone-600');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-stone-900/80', 'bg-stone-900/95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-stone-900/95', 'bg-stone-900/80');
+            }
+        });
+    </script>
+</body>
+</html>
