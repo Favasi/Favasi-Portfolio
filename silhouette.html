@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silhouette & Lamiera — Simone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            stone: {
+              50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4',
+              300: '#d6d3d1', 400: '#a8a29e', 500: '#78716c',
+              600: '#57534e', 700: '#44403c', 800: '#292524', 900: '#1c1917'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-stone-900 text-stone-100 font-sans">
+
+  <!-- Back Button -->
+  <div class="fixed top-6 left-6 z-50">
+    <a href="index.html"
+       class="flex items-center gap-2 px-4 py-2 bg-stone-800/80 backdrop-blur-sm border border-stone-700 rounded-full text-stone-300 hover:text-white hover:border-stone-500 transition-all duration-300 text-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Portfolio
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden marble-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-stone-900/30 via-transparent to-stone-900"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div class="reveal">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-4">Taglio Laser & Design Vettoriale</p>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">Silhouette<br>in Lamiera</h1>
+        <p class="text-stone-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          Nata per gioco, diventata arte. Ogni pezzo parte da un file disegnato a mano su Illustrator e si trasforma in acciaio attraverso il taglio laser.
+        </p>
+      </div>
+      <div class="reveal mt-12 flex justify-center">
+        <div class="w-px h-16 bg-gradient-to-b from-orange-400 to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Storia -->
+  <section class="py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-3">Come è iniziata</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-stone-100 mb-6">Da un garage,<br>tra amici</h2>
+          <p class="text-stone-400 leading-relaxed mb-4">
+            Tutto è partito per gioco: qualche amico, la passione per le auto e la voglia di decorare i nostri garage con qualcosa di unico. Le prime silhouette erano semplicemente quelle delle auto che amavamo di più.
+          </p>
+          <p class="text-stone-400 leading-relaxed">
+            Il passaparola ha fatto il resto. Amici di amici iniziavano a chiedere una lamiera personalizzata, finché quello che era un hobby è diventato un progetto vero e proprio — con una identità, un processo e una qualità riconoscibile.
+          </p>
+        </div>
+        <div class="reveal">
+          <div class="bg-stone-800/50 border border-stone-700 rounded-2xl p-8">
+            <h3 class="text-stone-300 font-semibold mb-6 text-lg">Il processo</h3>
+            <div class="space-y-6">
+              <div class="flex gap-4 items-start">
+                <div class="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-orange-400 text-xs font-bold">01</span>
+                </div>
+                <div>
+                  <p class="text-stone-200 font-medium">Disegno vettoriale</p>
+                  <p class="text-stone-500 text-sm mt-1">Ogni file viene costruito da zero su Adobe Illustrator, con precisione chirurgica per garantire un taglio pulito.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start">
+                <div class="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-orange-400 text-xs font-bold">02</span>
+                </div>
+                <div>
+                  <p class="text-stone-200 font-medium">Preparazione file macchina</p>
+                  <p class="text-stone-500 text-sm mt-1">Il vettoriale viene ottimizzato e convertito nel formato richiesto dalla macchina da taglio laser.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start">
+                <div class="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-orange-400 text-xs font-bold">03</span>
+                </div>
+                <div>
+                  <p class="text-stone-200 font-medium">Taglio laser su lamiera</p>
+                  <p class="text-stone-500 text-sm mt-1">La lamiera in ferro viene tagliata con precisione millimetrica. Il risultato è netto, pulito, pronto da montare.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categorie -->
+  <section class="py-24 px-6 bg-stone-800/30">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal text-center mb-16">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-3">Cosa realizziamo</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-100">Tre anime,<br>una materia</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Card Auto -->
+        <div class="reveal bg-stone-900/60 border border-stone-700 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition-all duration-500">
+          <div class="aspect-video bg-stone-800 overflow-hidden">
+            <img src="images/silhouette/auto-preview.jpg" alt="Silhouette automobili"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-stone-100 font-bold text-xl mb-2">Silhouette Auto</h3>
+            <p class="text-stone-400 text-sm leading-relaxed">
+              Le origini del progetto. BMW, auto da corsa, vetture iconiche — le silhouette che hanno decorato i nostri garage prima di tutto il resto.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card Montagna -->
+        <div class="reveal bg-stone-900/60 border border-stone-700 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition-all duration-500">
+          <div class="aspect-video bg-stone-800 overflow-hidden">
+            <img src="images/silhouette/montagna-preview.jpg" alt="Silhouette montagna"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-stone-100 font-bold text-xl mb-2">Paesaggi di Montagna</h3>
+            <p class="text-stone-400 text-sm leading-relaxed">
+              Silhouette di profili alpini, perfette per abitazioni montane. Grandi formati da parete che portano il paesaggio dentro casa.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card Loghi -->
+        <div class="reveal bg-stone-900/60 border border-stone-700 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition-all duration-500">
+          <div class="aspect-video bg-stone-800 overflow-hidden">
+            <img src="images/silhouette/loghi-preview.jpg.jpg" alt="Loghi su lamiera"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
+          </div>
+          <div class="p-6">
+            <h3 class="text-stone-100 font-bold text-xl mb-2">Loghi & Locali</h3>
+            <p class="text-stone-400 text-sm leading-relaxed">
+              Grandi lamiere personalizzate con il logo del locale, da appendere sui muri come elemento di design. Impatto visivo immediato.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Galleria -->
+  <section class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal text-center mb-16">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-3">Galleria</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-100">Lasciamo parlare<br>i pezzi</h2>
+      </div>
+
+      <!-- Griglia masonry-like -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group">
+          <img src="images/silhouette/gallery-1.jpg" alt="Lavoro 1"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group md:col-span-2">
+          <img src="images/silhouette/gallery-2.jpg" alt="Lavoro 2"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group md:col-span-2">
+          <img src="images/silhouette/gallery-3.jpg" alt="Lavoro 3"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group">
+          <img src="images/silhouette/gallery-4.jpg" alt="Lavoro 4"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group">
+          <img src="images/silhouette/gallery-5.jpg" alt="Lavoro 5"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group">
+          <img src="images/silhouette/gallery-6.jpg" alt="Lavoro 6"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+        <div class="reveal aspect-square bg-stone-800 rounded-xl overflow-hidden group">
+          <img src="images/silhouette/gallery-7.jpg" alt="Lavoro 7"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 hover:opacity-100" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Contatti -->
+  <section class="py-24 px-6 bg-stone-800/30">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="reveal">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-4">Hai un'idea?</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-100 mb-6">
+          Dal tuo schizzo<br>alla lamiera
+        </h2>
+        <p class="text-stone-400 text-lg mb-10 leading-relaxed">
+          Che sia una silhouette personalizzata, un logo per il tuo locale o un pezzo decorativo su misura — costruiamo tutto a partire dalla tua idea.
+        </p>
+        <a href="index.html#contact"
+           class="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105">
+          Parliamone
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-stone-800">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-stone-600 text-sm">© 2025 Simone — Tutti i diritti riservati</p>
+      <a href="index.html" class="text-stone-500 hover:text-orange-400 text-sm transition-colors duration-300">
+        ← Torna al portfolio
+      </a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

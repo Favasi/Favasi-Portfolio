@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simone - Portfolio | Dal Pixel alla Pietra</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Il tuo CSS personalizzato -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Configurazione Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4',
+                            300: '#d6d3d1', 400: '#a8a29e', 500: '#78716c',
+                            600: '#57534e', 700: '#44403c', 800: '#292524', 900: '#1c1917',
+                        },
+                        copper: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c', }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-900 text-stone-100 font-sans antialiased marble-bg">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-stone-900/80 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-serif text-2xl font-bold gradient-text tracking-tight">Simone.</span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Chi Sono</a>
+                        <a href="#experience" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Percorso</a>
+                        <a href="#projects" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Progetti</a>
+                        <a href="#contact" class="bg-copper-600 hover:bg-copper-500 text-white px-4 py-2 rounded-full text-sm font-medium transition-all">Contatti</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-stone-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-800 border-b border-stone-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Chi Sono</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Percorso</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium hover:text-copper-500">Progetti</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-copper-500">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-copper-600/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-stone-700/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="reveal active">
+                <p class="text-copper-500 font-medium tracking-widest uppercase mb-4 text-sm">Portfolio Simone Favaro</p>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                    <span class="gradient-text">Dal Pixel</span><br>
+                    <span class="text-stone-400">alla Pietra</span><br>
+                    <span class="text-copper-500">al Metallo</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-xl text-stone-400 leading-relaxed">
+                    Costruisco con precisione e passione. Un percorso che unisce creatività digitale, 
+                    manualità artigiana e ingegneria automobilistica.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#projects" class="bg-copper-600 hover:bg-copper-500 text-white px-8 py-4 rounded-full font-medium transition-all transform hover:scale-105">
+                        Vedi i Progetti
+                    </a>
+                    <a href="#contact" class="border border-stone-600 hover:border-copper-500 text-stone-300 hover:text-copper-500 px-8 py-4 rounded-full font-medium transition-all">
+                        Contattami
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-20 reveal">
+                <div class="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
+                    <div class="p-4">
+                        <div class="text-3xl font-bold text-copper-500 mb-2">5+</div>
+                        <div class="text-sm text-stone-400 uppercase tracking-wider">Anni di Esperienza</div>
+                    </div>
+                    <div class="p-4 border-x border-stone-800">
+                        <div class="text-3xl font-bold text-copper-500 mb-2">4</div>
+                        <div class="text-sm text-stone-400 uppercase tracking-wider">Settori Diversi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="aspect-[5/5] rounded-2xl overflow-hidden bg-stone-800 border border-stone-700">
+                            <img src="images/profilo/simone.JPG" 
+                                 alt="Simone - Ritratto professionale" 
+                                 class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-copper-600/20 rounded-full blur-2xl"></div>
+                    </div>
+                </div>
+                
+                <div class="reveal">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">
+                        Costruttore di <span class="text-copper-500">idee concrete</span>
+                    </h2>
+                    <div class="space-y-4 text-stone-300 leading-relaxed text-lg">
+                        <p>
+                            Mi chiamo Simone, ho 24 anni e porto con me un percorso non convenzionale. 
+                            Dopo il diploma in <strong class="text-stone-100">Grafica Multimediale</strong>, 
+                            ho scelto di mettere le mani "in pasta reale" attraversando mondi diversi ma uniti dalla precisione.
+                        </p>
+                        <p>
+                            Oggi unisco la visione digitale del grafico, la manualità del marmista, 
+                            il problem-solving dell'appassionato di motorsport e la precisione del 
+                            <strong class="text-stone-100">taglio laser</strong>. Dalla pietra alla lamiera, 
+                            trasformo idee in oggetti concreti.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="py-24 bg-stone-950/50 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Il mio <span class="text-copper-500">percorso</span></h2>
+                <p class="text-stone-400 text-lg">Formazione, lavoro e crescita professionale</p>
+            </div>
+
+            <div class="relative timeline-line space-y-12">
+                
+                <!-- DIPLOMA -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2017 - 2019</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Diploma Grafica Multimediale</h3>
+                                <p class="text-stone-400 text-sm">Istituto Bodoni Paravia. Formazione nell'estetica digitale, composizione visiva e software di design.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-copper-500 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <!-- STAGE 1 -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 hidden md:block"></div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-stone-600 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8 mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors border-l-4 border-l-copper-600">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2018 - Stage</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Intergraphica</h3>
+                                <p class="text-stone-400 text-sm mb-2">Stage come assistente grafico</p>
+                                <ul class="text-stone-400 text-sm space-y-1 list-disc list-inside">
+                                    <li>Preparazione di file per la stampa tramite programmi Adobe come Illustrator/Photoshop</li>
+                                    <li>Assistenza alla clientela</li>
+                                    <li>Gestione ordini di produzione</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAGAZZINIERE -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2019 - 2021</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Magazziniere Tessile Ambienta srl </h3>
+                                <p class="text-stone-400 text-sm">Gestione logistica rotoli di pezze, codici a barre e sistemi di tracciamento. Organizzazione metodica e precisione nei dettagli.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-stone-600 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <!-- MARmista -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-20 h-20 bg-copper-600/10 rounded-full blur-xl"></div>
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2021 - 2026</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Apprendista Marmista Grees Marmi</h3>
+                                <p class="text-stone-400 text-sm mb-3">5 anni di formazione artigiana:</p>
+                                <ul class="text-stone-400 text-sm space-y-1">
+                                    <li>• Realizzazione lapidi e cippi funerari</li>
+                                    <li>• Lavorazione personalizzata lastre</li>
+                                    <li>• Gestione clientela e sopralluoghi</li>
+                                    <li>• Finiture e installazioni</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-copper-500 rounded-full border-4 border-stone-900 ring-4 ring-copper-500/20"></div>
+                        <div class="md:w-5/12 md:pl-8 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <!-- LAMIERA (Nuova voce) -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 hidden md:block"></div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-stone-600 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2024 - Presente</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Lavorazione Lamiera Laser</h3>
+                                <p class="text-stone-400 text-sm">Realizzazione di arredamento personalizzato e silhouette decorative in lamiera tagliata al laser. Dal disegno vettoriale al prodotto finito.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BMW -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700 hover:border-copper-500/50 transition-colors">
+                                <span class="text-copper-500 font-bold text-sm tracking-wider">2018 - Presente</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Progetto BMW Drift (Hobby)</h3>
+                                <p class="text-stone-400 text-sm">Costruzione da zero di un'auto da drift con mio fratello. Progettazione meccanica e problem solving complessi.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-stone-600 rounded-full border-4 border-stone-900"></div>
+                        <div class="md:w-5/12 md:pl-8 hidden md:block"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section - AGGIORNATA CON 4 COLONNE E PATENTI -->
+    <section class="py-24 bg-stone-950/30 border-y border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Competenze <span class="text-copper-500">trasversali</span></h2>
+            </div>
+
+            <!-- GRID A 4 COLONNE -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- COLONNA 1: Digitale -->
+                <div class="reveal bg-stone-900/50 p-6 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group">
+                    <div class="w-12 h-12 bg-stone-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-stone-100">Digitale</h3>
+                    <ul class="space-y-2 text-stone-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Graphic Design
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Adobe Illustrator
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Brand Identity
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            UI/UX Basics
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLONNA 2: Manuale -->
+                <div class="reveal bg-stone-900/50 p-6 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-stone-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-stone-100">Manuale</h3>
+                    <ul class="space-y-2 text-stone-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Lavorazione marmi/pietre
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Incisioni e finiture
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Installazioni
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Gestione commesse
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLONNA 3: Meccanica -->
+                <div class="reveal bg-stone-900/50 p-6 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-stone-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-stone-100">Meccanica</h3>
+                    <ul class="space-y-2 text-stone-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Progettazione automotive
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Modifiche strutturali
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Problem solving
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Precisione meccanica
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- COLONNA 4: Lamiera (NUOVA) -->
+                <div class="reveal bg-stone-900/50 p-6 rounded-2xl border border-stone-800 hover:border-copper-500/30 transition-all group" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-stone-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-copper-600/20 transition-colors">
+                        <svg class="w-6 h-6 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-stone-100">Lamiera</h3>
+                    <ul class="space-y-2 text-stone-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Taglio laser CNC
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Disegno vettoriale (Illustrator)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Arredamento personalizzato
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-copper-500 rounded-full"></span>
+                            Silhouette artistiche
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- SEZIONE PATENTI (Nuova) -->
+            <div class="mt-16 pt-12 border-t border-stone-800 reveal">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-serif font-bold text-stone-200 mb-2">Patenti di Guida</h3>
+                    <p class="text-stone-500 text-sm">Autonomia nella mobilità per ogni esigenza lavorativa</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-3">
+                    <div class="bg-stone-800/50 px-5 py-3 rounded-full border border-stone-700 flex items-center gap-3 hover:border-copper-500/50 transition-colors">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-bold text-stone-200">AM</span>
+                        <span class="text-stone-500 text-xs">ciclomotori</span>
+                    </div>
+                    
+                    <div class="bg-stone-800/50 px-5 py-3 rounded-full border border-stone-700 flex items-center gap-3 hover:border-copper-500/50 transition-colors">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-bold text-stone-200">A1</span>
+                        <span class="text-stone-500 text-xs">motocicli leggere</span>
+                    </div>
+                    
+                    <div class="bg-stone-800/50 px-5 py-3 rounded-full border border-stone-700 flex items-center gap-3 hover:border-copper-500/50 transition-colors">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-bold text-stone-200">A2</span>
+                        <span class="text-stone-500 text-xs">motocicli medie</span>
+                    </div>
+                    
+                    <div class="bg-stone-800/50 px-5 py-3 rounded-full border border-stone-700 flex items-center gap-3 hover:border-copper-500/50 transition-colors">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-bold text-stone-200">B</span>
+                        <span class="text-stone-500 text-xs">automobili</span>
+                    </div>
+                    
+                    <div class="bg-stone-800/50 px-5 py-3 rounded-full border border-stone-700 flex items-center gap-3 hover:border-copper-500/50 transition-colors">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-bold text-stone-200">BE</span>
+                        <span class="text-stone-500 text-xs">auto + rimorchio</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">I miei <span class="text-copper-500">lavori</span></h2>
+            <p class="text-stone-400 text-lg max-w-2xl mx-auto mb-2">
+                Dal marmo alla lamiera, un percorso di trasformazione della materia.
+            </p>
+            
+            <!-- Filter Buttons -->
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active px-6 py-2 rounded-full border border-copper-600 bg-copper-600 text-white text-sm font-medium transition-all" data-filter="all">Tutti</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="marble">Marmo</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="silhouette">Silhouette</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="automotive">Automotive</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-stone-600 text-stone-400 hover:border-copper-500 hover:text-copper-500 text-sm font-medium transition-all" data-filter="stage">Stage</button>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            
+            <!-- PROGETTI MARMO --> 
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="marble" onclick="window.location.href='marmo.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/marmo/opere/rosa-venti-sestriere.jpg" 
+                         alt="Lapide in marmo" 
+                         class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+                    <!-- Overlay gradient sempre visibile in parte -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Marmo</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Opere & Arte Funeraria</h3>
+                    </div>
+                    <!-- Icona chevron in alto a destra -->
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Realizzazione di Opere Monumentali/sculture e arte funeraria, tutto personalizzato</p>
+                    <!-- Indicatore "Vedi progetto" sempre visibile su mobile -->
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div> 
+
+            <!-- Lastre Personalizzate -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="marble" onclick="window.location.href='marmo.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/marmo/lastre/piano-cucina.jpg" alt="Piano cucina in marmo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Marmo</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Lastre Personalizzate</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Lavorazioni su misura per arredi interni e rivestimenti.</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- PROGETTI SILHOUETTE -->
+            <!-- Arredamento Personalizzato -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="silhouette" onclick="window.location.href='silhouette.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/silhouette/arredamento/libreria-laser.jpg" alt="Libreria in lamiera" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Silhouette</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Arredamento Personalizzato</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Silhouette in lamiera tagliata al laser, complementi d'arredo</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Silhouette Auto da Corsa (con video) -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="silhouette" onclick="window.location.href='silhouette.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <video 
+                        autoplay 
+                        muted 
+                        loop 
+                        playsinline
+                        poster="images/silhouette/auto/bmw-silhouette-thumb.jpg"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <source src="videos/silhouette/bmw-silhouette.mp4" type="video/mp4">
+                        Il tuo browser non supporta il video.
+                    </video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Silhouette</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Silhouette Auto Personalizzate</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Decorazioni da parete per officine e garage: Personalizzazione di ogni auto.</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Oggettistica Decorativa -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="silhouette" onclick="window.location.href='silhouette.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/silhouette/gallery-6.jpg" alt="Oggetti decorativi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Silhouette</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Oggettistica Decorativa</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Orologi da parete, portachiavi artigianali, elementi decorativi personalizzati.</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- PROGETTI AUTOMOTIVE -->
+            <!-- BMW Drift Build -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="automotive" onclick="window.location.href='bmw.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/bmw/costruzione/telaio-nudo.jpg" alt="Telaio BMW" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Automotive</span>
+                        <h3 class="text-white font-bold text-lg mt-2">BMW Drift Build</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Costruzione da telaio nudo ad auto da drift: roll cage, sospensioni, assetto.</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Dettagli Tecnici -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="automotive" onclick="window.location.href='bmw.html'">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/bmw/finiture/dettagli-interni.jpg" alt="Dettagli BMW" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Automotive</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Dettagli Tecnici</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Lavorazioni meccaniche, saldature e modifiche strutturali.</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- PROGETTI STAGE -->
+            <div class="project-card group relative rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-copper-500/20 hover:border-copper-500/50 hover:-translate-y-1 active:scale-95" data-category="stage">
+                <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                    <img src="images/stage/grafica/progetto.jpg" alt="Progetto stage" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-copper-400 text-xs font-bold tracking-wider uppercase bg-copper-500/10 px-2 py-1 rounded">Stage</span>
+                        <h3 class="text-white font-bold text-lg mt-2">Intergraphica</h3>
+                    </div>
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-stone-900/80 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-stone-600 group-hover:border-copper-500">
+                        <svg class="w-5 h-5 text-copper-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="p-6 flex items-center justify-between">
+                    <p class="text-stone-400 text-sm flex-1">Preparazione file per stampa, assistenza clientela, gestione ordini.</p>
+                    <span class="text-copper-500 text-sm font-medium flex items-center gap-1 ml-4 whitespace-nowrap">
+                        Vedi
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Mettiamoci in <span class="text-copper-500">contatto</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal space-y-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-stone-200">Info</h3>
+                        <p class="text-stone-400">simonefavaro85@gmail.com</p>
+                        <p class="text-stone-400">Italia</p>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-stone-200 px-6 py-3 rounded-full transition-all border border-stone-700">
+                        Download CV<br>
+                        (attualmente non disponibile)
+                    </a>
+                </div>
+
+                <form class="reveal space-y-6 bg-stone-800/30 p-8 rounded-2xl border border-stone-800">
+                    <div>
+                        <label class="block text-sm font-medium text-stone-400 mb-2">Nome</label>
+                        <input type="text" class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-stone-200 focus:border-copper-500 transition-colors" placeholder="Il tuo nome">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-stone-400 mb-2">Email</label>
+                        <input type="email" class="w-full bg-stone-900 border border-stone-700 rounded-lg px-4 py-3 text-stone-200 focus:border-copper-500 transition-colors" placeholder="tua@email.com">
+                    </div>
+                    <button type="submit" class="w-full bg-copper-600 hover:bg-copper-500 text-white font-medium py-3 rounded-lg transition-all">
+                        Invia
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 border-t border-stone-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="font-serif text-2xl font-bold gradient-text">Simone.</span>
+            <p class="text-stone-500 text-sm mt-1">© 2026 Simone. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

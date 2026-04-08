@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marmo - Lavori | Simone Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4',
+                            300: '#d6d3d1', 400: '#a8a29e', 500: '#78716c',
+                            600: '#57534e', 700: '#44403c', 800: '#292524', 900: '#1c1917',
+                        },
+                        copper: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c', }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-900 text-stone-100 font-sans antialiased marble-bg">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-stone-900/80 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex-shrink-0 flex items-center">
+                    <span class="font-serif text-2xl font-bold gradient-text tracking-tight">Simone.</span>
+                </a>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html#home" class="hover:text-copper-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="index.html#projects" class="text-copper-500 px-3 py-2 rounded-md text-sm font-medium">Progetti</a>
+                        <a href="index.html#contact" class="bg-copper-600 hover:bg-copper-500 text-white px-4 py-2 rounded-full text-sm font-medium transition-all">Contatti</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Pagina -->
+    <section class="pt-32 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-4">
+                <a href="index.html#projects" class="text-stone-400 hover:text-copper-500 transition-colors flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Torna ai progetti
+                </a>
+            </div>
+            <h1 class="font-serif text-5xl md:text-6xl font-bold mb-4">
+                Lavorazioni in <span class="text-copper-500">Marmo</span>
+            </h1>
+            <p class="text-stone-400 text-xl max-w-3xl">
+                Cinque anni di esperienza artigiana tra arredi, opere monumentali e arte funeraria. 
+                Dalla pietra grezza all'opera finita.
+            </p>
+        </div>
+    </section>
+
+    <!-- SEZIONE 1: PIANI CUCINA -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold text-stone-200 mb-4 border-l-4 border-copper-500 pl-4">Piani Cucina su Misura</h2>
+                <p class="text-stone-400 max-w-3xl leading-relaxed">
+                    Realizzazione completa di piani cucina in marmo e pietre naturali. 
+                    Ogni progetto inizia dalla selezione del materiale più adatto alle esigenze del cliente: 
+                    dal classico <strong class="text-stone-200">marmo bianco Carrara</strong> al resistente 
+                    <strong class="text-stone-200">granito</strong>, passando per l'elegante 
+                    <strong class="text-stone-200">Calacatta</strong> e il caldo 
+                    <strong class="text-stone-200">Travertino</strong>.
+                </p>
+                <p class="text-stone-400 max-w-3xl leading-relaxed mt-4">
+                    Le lavorazioni includono <strong class="text-stone-200">bordature personalizzate</strong> 
+                    (bisello, mezzo toro, toro, piano arrotondato), 
+                    <strong class="text-stone-200">forature per lavello e piano cottura</strong> con precisione millimetrica, 
+                    finiture <strong class="text-stone-200">lucida o spazzolata</strong> secondo le preferenze, 
+                    e trattamenti <strong class="text-stone-200">anti-macchia</strong> per garantire durata nel tempo.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Piano 1 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/piani-cucina/cucina-carrara-1.jpg" 
+                             alt="Piano cucina marmo Carrara" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Cucina Open Space</h3>
+                        <p class="text-stone-500 text-xs mb-2">Marmo bianco Carrara</p>
+                        <p class="text-stone-400 text-sm">cucina moderna in fase di installazione con top e rivestimento murale in marmo bianco Carrara</p>
+                    </div>
+                </div>
+
+                <!-- Piano 2 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/piani-cucina/isola-calacatta.jpg" 
+                             alt="Isola cucina Calacatta" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Isola Centrale</h3>
+                        <p class="text-stone-500 text-xs mb-2">Calacatta Oro</p>
+                        <p class="text-stone-400 text-sm">Isola cucina in marmo Calacatta con venature dorate su fondo bianco brillante. 
+                            Piano con sbalzo generoso e fiancata a vista rivestita in pietra, abbinata a una base in pannelli neri scanalati. 
+                            Tre sgabelli in legno naturale con gambe in ottone completano un ambiente di grande eleganza contemporanea.</p>
+                    </div>
+                </div>
+
+                <!-- Piano 3 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/piani-cucina/travertino-cucina.jpg" 
+                             alt="Piano cucina Travertino" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Stile Rustico Moderno</h3>
+                        <p class="text-stone-500 text-xs mb-2">Travertino Romano</p>
+                        <p class="text-stone-400 text-sm">Isola cucina interamente rivestita in Travertino Romano, con top, 
+                            fiancate e ante tutte in continuità di materiale per un effetto monolitico di forte impatto visivo. 
+                            Venature orizzontali in tono beige caldo, finitura spazzolata. 
+                            Forature per piano cottura a induzione e lavello sottopiano integrati con precisione millimetrica.</p>
+                    </div>
+                </div>
+
+                <!-- Piano 4 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/piani-cucina/granito-nero.jpg" 
+                             alt="Piano cucina granito nero" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Resistenza Totale</h3>
+                        <p class="text-stone-500 text-xs mb-2">Granito Nero Assoluto</p>
+                        <p class="text-stone-400 text-sm">Piano cucina in Granito Nero Assoluto con finitura lucida a specchio. 
+                            Lavorazione completa con foratura lavello a doppia vasca incassata, piano cottura a induzione integrato e bordo netto squadrato. 
+                            Il contrasto con le ante in rovere naturale e lo schienale in pietra grigia conferisce un look industriale raffinato.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE 2: OPERE MONUMENTALI -->
+    <section class="py-12 bg-stone-950/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold text-stone-200 mb-4 border-l-4 border-copper-500 pl-4">Opere Monumentali & Sculture</h2>
+                <p class="text-stone-400 max-w-3xl leading-relaxed">
+                    Progetti di grande dimensione realizzati su commissione per enti pubblici, comuni e aziende. 
+                    Dalla progettazione alla installazione finale, gestione completa di opere che durano nel tempo.
+                </p>
+                <p class="text-stone-400 max-w-3xl leading-relaxed mt-4">
+                    Tecniche utilizzate: <strong class="text-stone-200">scultura in altorilievo</strong>, 
+                    <strong class="text-stone-200">incisione profonda</strong>, 
+                    <strong class="text-stone-200">verniciatura su pietra</strong>, 
+                    <strong class="text-stone-200">sabbiatura selettiva</strong> per effetti texture, 
+                    e <strong class="text-stone-200">installazione in quota</strong> con mezzi speciali.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Opera 1: Rosa dei Venti -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-video relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/opere/rosa-venti-sestriere.jpg" 
+                             alt="Rosa dei Venti Sestriere" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-copper-500 text-xs font-bold tracking-wider uppercase">OPERA PUBBLICA</span>
+                            <span class="text-stone-600 text-xs">|</span>
+                            <span class="text-stone-500 text-xs">Sestriere (TO)</span>
+                        </div>
+                        <h3 class="text-white font-bold text-xl mb-3">Rosa dei Venti</h3>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Opera monumentale incisa su granito nero con cime alpine georeferenziate
+                        </p>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Lastra quadrata in 
+                            <strong class="text-stone-200">
+                                Granito Nero Assoluto</strong> con 
+                                <strong class="text-stone-200">rosa dei venti</strong> 
+                                incisa al centro e, disposti lungo i punti cardinali, i nomi e le quote di tutte le cime visibili da Sestriere. Incisione con
+                                 <strong class="text-stone-200">finitura sabbiata
+                                 </strong> sul disegno e lucida sullo sfondo per massimo contrasto. Opera datata 2023, destinata all'
+                                 <strong class="text-stone-200">installazione in quota
+                                 </strong>.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">5x5 metri</span>
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Altorilievo</span>
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Incisione Profonda</span>
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Installazione quota</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opera 2: Logo Aziendale -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-video relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/opere/logo-aziendale-rosso.jpg" 
+                             alt="Logo aziendale in marmo rosso" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-copper-500 text-xs font-bold tracking-wider uppercase">COMMISSIONE AZIENDALE</span>
+                        </div>
+                        <h3 class="text-white font-bold text-xl mb-3"> Logo Agostino su Granito Rosso</h3>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Lastra monumentale in <strong class="text-stone-200">Granito Rosso</strong> 
+                            con incisione del logo aziendale "Agostino" — globo terrestre con
+                             <strong class="text-stone-200">meridiani, continenti</strong> 
+                             e banner con scritta in corsivo. Lavoro di <strong class="text-stone-200">grande formato</strong>
+                              sollevato con muletto, che testimonia la scala e la complessità della lavorazione eseguita.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Granito Rosso</span>
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Incisione profonda</span>
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Sabbiatura</span>
+                            <span class="text-xs bg-stone-700 text-stone-300 px-3 py-1 rounded-full">Installazione parete</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Altre opere minori (griglia 3 colonne) -->
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Opera 3 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/opere/scultura-abstract.jpg" 
+                             alt="Scultura astratta" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Logo Agostino su Piastrelle Nere</h3>
+                        <p class="text-stone-500 text-xs mb-2">Versione in piastrella nera lucida, dettaglio incisione</p>
+                        <p class="text-stone-400 text-sm">Dettaglio ravvicinato della stessa incisione del logo "Agostino" realizzata su
+                             <strong class="text-stone-200">piastrella nera lucida</strong>. Il 
+                             <strong class="text-stone-200">fondo a specchio</strong> 
+                             esalta il contrasto con il tratto bianco dell'incisione, rendendo visibili ogni dettaglio dei meridiani, dei continenti e della 
+                             <strong class="text-stone-200">scritta in carattere calligrafico</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Opera 4 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/opere/caduti-in-battaglia.jpg" 
+                             alt="Caduti in battaglia" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Monumento ai Caduti — Trofarello</h3>
+                        <p class="text-stone-500 text-xs mb-2">Lapide commemorativa Prima Guerra Mondiale in marmo bianco e verde</p>
+                        <p class="text-stone-400 text-sm">Grande lapide commemorativa dedicata ai 
+                            <strong class="text-stone-200">caduti della Prima Guerra Mondiale</strong>
+                             del comune di Trofarello. Realizzata in <strong class="text-stone-200">marmo bianco
+                             </strong> con cornice in <strong class="text-stone-200">marmo verde</strong>
+                             , riporta incisioni di decorazioni floreali, stemma comunale e l'elenco completo dei caduti con nomi, classi e date. Lavoro di 
+                             <strong class="text-stone-200">altissima precisione</strong> e profondo rispetto istituzionale.
+                            </p>
+                    </div>
+                </div>
+
+                <!-- Opera 5 -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/opere/elemento-architettonico.jpg" 
+                             alt="Elemento architettonico" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Colonna Stuccata</h3>
+                        <p class="text-stone-500 text-xs mb-2">Marmo Botticino</p>
+                        <p class="text-stone-400 text-sm">Rivestimento colonna con finte fughe, effetto antico.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE 3: COPRIFOSSA/CIPPI (Arte Funeraria) -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold text-stone-200 mb-4 border-l-4 border-copper-500 pl-4">Cippi e Coprifossa</h2>
+                <p class="text-stone-400 max-w-3xl leading-relaxed">
+                    Lavorazione di monumenti funerari con attenzione alla memoria e al rispetto. 
+                    Dalla ristrutturazione di vecchi cippi alla realizzazione ex-novo con personalizzazione completa.
+                </p>
+                <p class="text-stone-400 max-w-3xl leading-relaxed mt-4">
+                    Ogni progetto include: <strong class="text-stone-200">scelta del materiale</strong> 
+                    (marmo bianco, nero Marquinia, rosso Levanto, verde Guatemala), 
+                    <strong class="text-stone-200">progettazione scritte e incisioni</strong>, 
+                    <strong class="text-stone-200">componenti artistici</strong> (Madonne, Padre Pio, angeli, simboli religiosi o laici 
+                    che riflettano la passione del defunto: moto, musica, sport, professione).
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Cippo 1: Ristrutturazione -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/cippi/ristrutturazione-1.jpg" 
+                             alt="Ristrutturazione cippo prima e dopo" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-copper-500 text-xs font-bold uppercase">RISTRUTTURAZIONE</span>
+                        </div>
+                        <h3 class="text-white font-bold mb-1">Restauro Croce Funeraria</h3>
+                        <p class="text-stone-400 text-sm">Croce funeraria in 
+                            <strong class="text-stone-200">marmo bianco</strong>
+                             recuperata e restaurata con <strong class="text-stone-200">
+                                nuove incisioni delle scritte</strong> e applicazione di 
+                                <strong class="text-stone-200">foto in porcellana</strong> 
+                                con cornice dorata. Il pezzo, fotografato in laboratorio prima della riconsegna, mostra come un cippo
+                                 datato possa ritrovare dignità e memoria con un intervento mirato.</p>
+                    </div>
+                </div>
+
+                <!-- Cippo 2: Nuovo con Madonna -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/cippi/cippo-madonna.jpg" 
+                             alt="Cippo con Madonna" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-copper-500 text-xs font-bold uppercase">NUOVO</span>
+                        </div>
+                        <h3 class="text-white font-bold mb-1">Cippo a Cuore con Foto Ceramica</h3>
+                        <p class="text-stone-400 text-sm">Monumento funerario in 
+                            <strong class="text-stone-200">Granito Grigio</strong> 
+                            con stele sagomata a cuore, inserto in <strong class="text-stone-200">
+                                ceramica a forma di cuore</strong> con foto e dedica personalizzata. 
+                                Base a terra con piano in granito e ghiaia bianca decorativa. 
+                                Forma moderna e personale che si distacca dal classico cippo tradizionale.</p>
+                    </div>
+                </div>
+
+                <!-- Cippo 3: Padre Pio -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/cippi/cippo-padre-pio.jpg" 
+                             alt="Cippo con Padre Pio" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-copper-500 text-xs font-bold uppercase">PERSONALIZZATO</span>
+                        </div>
+                        <h3 class="text-white font-bold mb-1">Cippo a forma di edicola</h3>
+                        <p class="text-stone-400 text-sm">Monumento funerario realizzato in <strong class="text-stone-200">Marmo Rosso</strong>
+                             con forma ad edicola, integrazione di <strong class="text-stone-200">foto ceramica</strong> e 
+                             <strong class="text-stone-200">targa commemorativa in bronzo</strong>
+                             . Installato su basamento a terra con piano di copertura sagomato. 
+                             La foto è scattata in cimitero dopo l'installazione definitiva, con fiori ai lati.</p>
+                    </div>
+                </div>
+
+                <!-- Cippo 4: Tema passione -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[3/4] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/cippi/cippo-moto.jpg" 
+                             alt="Cippo con tema moto" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-copper-500 text-xs font-bold uppercase">PERSONALIZZATO</span>
+                        </div>
+                        <h3 class="text-white font-bold mb-1">Piano inclinato e inserto fotografico a cuore</h3>
+                        <p class="text-stone-400 text-sm">Monumento funerario in 
+                            <strong class="text-stone-200">serizzo</strong> 
+                            con stele dal design contemporaneo a <strong class="text-stone-200">
+                                piano superiore inclinato</strong> e inserto ceramico a cuore con foto e dedica.
+                                 Base e piano di copertura a terra in granito abbinato. Lavoro fotografato appena installato,
+                                  ancora con il terreno di posa fresco.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE 4: LAPIDI -->
+    <section class="py-12 bg-stone-950/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold text-stone-200 mb-4 border-l-4 border-copper-500 pl-4">Lapidi e Placche</h2>
+                <p class="text-stone-400 max-w-3xl leading-relaxed">
+                    Realizzazione di lapidi per tombe a terra, placche commemorative e targhe. 
+                    Forme classiche e moderne, con possibilità di integrare elementi personalizzati.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Lapide 1: Classica -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/lapidi/lapide-classica-1.jpg" 
+                             alt="Lapide classica" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Lapide Classica</h3>
+                        <p class="text-stone-500 text-xs mb-2">Marmo bianco Carrara</p>
+                        <p class="text-stone-400 text-sm">La lapide riporta i dati anagrafici del defunto incisi nel marmo.
+                            alla sinistra allo spazione destinato alla fotografia è presente il toro, simbolo della squadra di calcio,
+                            Mentre sul lato destro è incisa una croce.
+                            Tutti gli elementi, sia decorativi che testuali, sono realizzati tramite incisione e succissivamente rifiniti
+                            con verniciatura nera, conferendo un'aspetto sobrio ed elegante.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Lapide 2: Con foto -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/lapidi/lapide-foto-porcellana.jpg" 
+                             alt="Lapide con porcellana" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Lapide elegante con motivo angelico</h3>
+                        <p class="text-stone-500 text-xs mb-2">Rosa beta</p>
+                        <p class="text-stone-400 text-sm">Lapide in marmo chiaro con incisone di un'angelo e i dati anagrafici dei defuniti in caratteri eleganti, con una dedica finale </p>
+                    </div>
+                </div>
+
+                <!-- Lapide 3: Moderna -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/lapidi/lapide-moderna.jpg" 
+                             alt="Lapide moderna" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Marmo di carrara</h3>
+                        <p class="text-stone-500 text-xs mb-2">Lapide in marmo chiaro</p>
+                        <p class="text-stone-400 text-sm">Lapide in marmo di carrara con due foto differenti sia in ovale che in rettangolare, incisione eleganti e decorazioni floreali a rosa ai lati,
+                            che impreziosiscono la composizione commemorativa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Lapide 4: Doppia -->
+                <div class="group rounded-2xl bg-stone-800 border border-stone-700 overflow-hidden reveal">
+                    <div class="aspect-[4/3] relative overflow-hidden bg-stone-700">
+                        <img src="images/marmo/lapidi/lapide-doppia.jpg" 
+                             alt="Lapide doppia" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-bold mb-1">Lapide con incisione della Maddona</h3>
+                        <p class="text-stone-500 text-xs mb-2">Marmo in rosa Beta</p>
+                        <p class="text-stone-400 text-sm">La lapide riporta i dati anagrafici del defunto incisi. Accanto allo spazio destinato alla fotografia è raffigurata il simbolo della Maddona,
+                             tramite l'incisione e rifinita con verniciatura blu,
+                            che ne valorizza i dettagli e la rende visivamente distintiva.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Finale -->
+    <section class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+            <h2 class="font-serif text-3xl font-bold mb-4">Hai un progetto in mente?</h2>
+            <p class="text-stone-400 mb-8">Dalla pietra grezza all'opera finita, posso aiutarti a realizzarlo.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html#contact" class="bg-copper-600 hover:bg-copper-500 text-white px-8 py-4 rounded-full font-medium transition-all">
+                    Richiedi Preventivo
+                </a>
+                <a href="index.html" class="border border-stone-600 hover:border-copper-500 text-stone-300 hover:text-copper-500 px-8 py-4 rounded-full font-medium transition-all">
+                    Torna alla Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 border-t border-stone-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html" class="font-serif text-2xl font-bold gradient-text">Simone.</a>
+            <p class="text-stone-500 text-sm mt-1">© 2026 Simone. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

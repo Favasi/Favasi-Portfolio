@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automotive — Simone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            stone: {
+              50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4',
+              300: '#d6d3d1', 400: '#a8a29e', 500: '#78716c',
+              600: '#57534e', 700: '#44403c', 800: '#292524', 900: '#1c1917'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Book 3D */
+    .book-scene {
+      perspective: 1500px;
+    }
+    .book {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      transform-style: preserve-3d;
+    }
+    .page-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+    }
+    /* Pagina con effetto flip */
+    .page {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      transform-origin: left center;
+      backface-visibility: hidden;
+    }
+    .page.flipped {
+      transform: rotateY(-180deg);
+    }
+    .page-front,
+    .page-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 0 12px 12px 0;
+      overflow: hidden;
+    }
+    .page-back {
+      transform: rotateY(180deg);
+      border-radius: 12px 0 0 12px;
+    }
+    /* Copertina libro */
+    .book-cover {
+      transition: opacity 0.4s ease;
+      border-radius: 4px 12px 12px 4px;
+      box-shadow:
+        -6px 0 15px rgba(0,0,0,0.5),
+        6px 0 15px rgba(0,0,0,0.3),
+        inset -3px 0 8px rgba(0,0,0,0.4);
+    }
+    /* Ombra libro */
+    .book-shadow {
+      position: absolute;
+      bottom: -20px;
+      left: 5%;
+      right: 5%;
+      height: 20px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%);
+      filter: blur(8px);
+    }
+    /* Spine del libro */
+    .book-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 30px;
+      background: linear-gradient(to right, #1c1917, #292524, #1c1917);
+      border-radius: 4px 0 0 4px;
+      box-shadow: inset -2px 0 5px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+    /* Indicatori pagina */
+    .page-indicator {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+    .page-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #44403c;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .page-dot.active {
+      background: #f97316;
+      transform: scale(1.3);
+    }
+    /* Auto-flip progress bar */
+    .progress-bar {
+      height: 2px;
+      background: linear-gradient(to right, #f97316, #44403c);
+      transition: width linear;
+    }
+  </style>
+</head>
+<body class="bg-stone-900 text-stone-100 font-sans">
+
+  <!-- Back Button -->
+  <div class="fixed top-6 left-6 z-50">
+    <a href="index.html"
+       class="flex items-center gap-2 px-4 py-2 bg-stone-800/80 backdrop-blur-sm border border-stone-700 rounded-full text-stone-300 hover:text-white hover:border-stone-500 transition-all duration-300 text-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Portfolio
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden marble-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-stone-900/30 via-transparent to-stone-900"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div class="reveal">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-4">Passione & Meccanica</p>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">Automotive</h1>
+        <p class="text-stone-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          Una storia nata tra bulloni e sogni. Sfoglia il libro e scopri il percorso — dall'officina di famiglia al progetto drift costruito da zero.
+        </p>
+        <div class="mt-10">
+          <a href="#libro"
+             class="inline-flex items-center gap-2 px-6 py-3 border border-orange-500/50 text-orange-400 rounded-full hover:bg-orange-500/10 transition-all duration-300 text-sm">
+            Sfoglia il libro
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Libro 3D -->
+  <section id="libro" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="reveal text-center mb-16">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-3">Il mio percorso</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-100">Un libro da sfogliare</h2>
+        <p class="text-stone-500 mt-3 text-sm">Clicca le frecce, usa le frecce tastiera, o lascia sfogliare in automatico</p>
+      </div>
+
+      <!-- Progress bar auto-flip -->
+      <div class="mb-6 bg-stone-800 rounded-full overflow-hidden h-0.5">
+        <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+      </div>
+
+      <!-- Libro -->
+      <div class="book-scene">
+        <div class="book">
+          <div class="book-spine"></div>
+
+          <div id="bookPages" class="page-container ml-[30px]">
+
+            <!-- COPERTINA -->
+            <div class="page-front book-cover w-full h-full bg-stone-900 border border-stone-700 flex flex-col items-center justify-center relative overflow-hidden" id="coverPage">
+              <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-stone-900"></div>
+              <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(45deg, #f97316 0, #f97316 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
+              <div class="relative z-10 text-center px-8">
+                <div class="w-16 h-16 rounded-full border-2 border-orange-500/50 flex items-center justify-center mx-auto mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                  </svg>
+                </div>
+                <p class="text-orange-400 text-xs tracking-widest uppercase mb-3">Simone — Automotive</p>
+                <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Dalla Passione<br>al Progetto</h3>
+                <p class="text-stone-500 text-sm leading-relaxed max-w-xs mx-auto">Una storia di motori, saldature e notti in officina raccontata pagina per pagina.</p>
+              </div>
+            </div>
+
+            <!-- PAGINE (generate da JS) -->
+            <div id="pagesWrapper"></div>
+
+          </div>
+
+          <div class="book-shadow"></div>
+        </div>
+      </div>
+
+      <!-- Controlli -->
+      <div class="mt-12 flex flex-col items-center gap-6">
+        <!-- Indicatori -->
+        <div class="page-indicator" id="pageIndicator"></div>
+
+        <!-- Frecce navigazione -->
+        <div class="flex items-center gap-6">
+          <button id="prevBtn"
+            class="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-orange-500 hover:text-orange-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+
+          <button id="autoPlayBtn"
+            class="px-5 py-2 rounded-full border border-stone-700 text-stone-400 hover:border-orange-500 hover:text-orange-400 transition-all duration-300 text-sm flex items-center gap-2">
+            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+            Auto
+          </button>
+
+          <button id="nextBtn"
+            class="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-orange-500 hover:text-orange-400 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Numero pagina -->
+        <p id="pageCounter" class="text-stone-600 text-xs tracking-widest"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 px-6 bg-stone-800/30">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="reveal">
+        <p class="text-orange-400 text-sm font-medium tracking-widest uppercase mb-4">Il progetto continua</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-100 mb-6">
+          Ogni chilometro<br>è una pagina nuova
+        </h2>
+        <p class="text-stone-400 text-lg mb-10 leading-relaxed">
+          Il libro si aggiorna con ogni nuovo progetto, ogni modifica, ogni traguardo raggiunto. Torna a sfogliarlo.
+        </p>
+        <a href="index.html#contact"
+           class="inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105">
+          Contattami
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-stone-800">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-stone-600 text-sm">© 2025 Simone — Tutti i diritti riservati</p>
+      <a href="index.html" class="text-stone-500 hover:text-orange-400 text-sm transition-colors duration-300">
+        ← Torna al portfolio
+      </a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // =============================================
+    // DATI PAGINE — modifica qui per aggiungere pagine
+    // =============================================
+    const pages = [
+      {
+        image: "images/bmw/passion-start.jpg",
+        tag: "Le origini",
+        title: "Tutto inizia con una passione",
+        text: "Fin da piccolo i motori hanno fatto parte della mia vita. Non come semplice hobby, ma come linguaggio — un modo di capire come funzionano le cose, di smontare e rimontare il mondo.",
+        side: "right"
+      },
+      {
+        image: "images/bmw/officina.jpg",
+        tag: "L'officina",
+        title: "Le prime ore in officina",
+        text: "Le prime esperienze vere sono arrivate tra attrezzi e odore di olio. Imparare a leggere un motore, capire le sospensioni, ragionare su assetto e geometrie — una scuola pratica che nessun libro avrebbe potuto sostituire.",
+        side: "left"
+      },
+      {
+        image: "images/bmw/telaio.jpg",
+        tag: "Il progetto drift",
+        title: "Un telaio nudo, un sogno preciso",
+        text: "Con mio fratello abbiamo deciso di costruire un'auto da drift partendo da zero — da un telaio nudo. Non comprare qualcosa di già fatto, ma costruirlo pezzo per pezzo, capendo ogni scelta.",
+        side: "right"
+      },
+      {
+        image: "images/bmw/rollcage.jpg",
+        tag: "Roll cage",
+        title: "Acciaio che protegge, acciaio che definisce",
+        text: "La roll cage è stata uno dei lavori più complessi e soddisfacenti. Ogni tubo misurato, piegato e saldato a mano. Un lavoro che richiede precisione assoluta perché è la struttura che salva la vita in pista.",
+        side: "left"
+      },
+      {
+        image: "images/bmw/sospensioni.jpg",
+        tag: "Sospensioni & assetto",
+        title: "Il dettaglio fa la differenza",
+        text: "Geometrie, campanatura, convergenza — l'assetto di un'auto da drift non è solo estetica. Ogni regolazione cambia il comportamento in frenata, in ingresso curva, durante la sbandata. Una ricerca continua.",
+        side: "right"
+      },
+      {
+        image: "images/bmw/pista.jpg",
+        tag: "In pista",
+        title: "Il momento della verità",
+        text: "Quando un progetto costruito con le tue mani tocca il asfalto per la prima volta, ogni ora passata in officina prende senso. Non importa il risultato — importa che il processo sia stato fatto bene.",
+        side: "left"
+      },
+      {
+        image: "images/bmw/pista.jpg",
+        tag: "In pista",
+        title: "Il momento della verità",
+        text: "Quando un progetto costruito con le tue mani tocca il asfalto per la prima volta, ogni ora passata in officina prende senso. Non importa il risultato — importa che il processo sia stato fatto bene.",
+        side: "left"
+      },
+      {
+        image: null,
+        tag: "In progress",
+        title: "Il libro continua...",
+        text: "Questo capitolo è ancora in scrittura. Nuovi progetti, nuove modifiche, nuovi traguardi. Torna a sfogliarlo presto.",
+        side: "right",
+        isLast: true
+      }
+    ];
+
+    // =============================================
+    // GENERAZIONE PAGINE
+    // =============================================
+    const wrapper = document.getElementById("pagesWrapper");
+    const indicator = document.getElementById("pageIndicator");
+    const counter = document.getElementById("pageCounter");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const autoPlayBtn = document.getElementById("autoPlayBtn");
+    const playIcon = document.getElementById("playIcon");
+    const pauseIcon = document.getElementById("pauseIcon");
+    const progressBar = document.getElementById("progressBar");
+
+    let currentPage = -1; // -1 = copertina
+    let totalPages = pages.length;
+    let autoPlay = false;
+    let autoTimer = null;
+    let progressTimer = null;
+    const AUTO_INTERVAL = 5000;
+
+    // Genera HTML pagine
+    pages.forEach((p, i) => {
+      const pageEl = document.createElement("div");
+      pageEl.className = "page";
+      pageEl.id = `page-${i}`;
+      pageEl.style.zIndex = totalPages - i;
+
+      const imgHtml = p.image
+        ? `<img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover opacity-70" />`
+        : `<div class="w-full h-full flex items-center justify-center bg-stone-900">
+            <div class="text-center">
+              <div class="w-16 h-16 rounded-full border border-orange-500/30 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-orange-400/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                </svg>
+              </div>
+              <p class="text-stone-600 text-sm">Foto in arrivo</p>
+            </div>
+          </div>`;
+
+      const textSide = p.side === "right"
+        ? `<div class="page-front bg-stone-900 border border-stone-700/50" style="border-radius: 0 12px 12px 0;">
+              <div class="w-full h-1/2 overflow-hidden">${imgHtml}</div>
+              <div class="p-6 h-1/2 flex flex-col justify-center">
+                <p class="text-orange-400 text-xs tracking-widest uppercase mb-2">${p.tag}</p>
+                <h3 class="text-stone-100 font-bold text-lg leading-tight mb-3">${p.title}</h3>
+                <p class="text-stone-400 text-sm leading-relaxed">${p.text}</p>
+                ${p.isLast ? '<p class="text-stone-600 text-xs mt-3 italic">Pagina ' + (i+1) + ' di ' + totalPages + '</p>' : '<p class="text-stone-600 text-xs mt-3">Pagina ' + (i+1) + ' di ' + totalPages + '</p>'}
+              </div>
+           </div>
+           <div class="page-back bg-stone-800/50 border border-stone-700/30" style="border-radius: 12px 0 0 12px;">
+             <div class="w-full h-full flex items-center justify-center">
+               <p class="text-stone-700 text-xs rotate-180" style="writing-mode: vertical-rl;">Automotive — Simone</p>
+             </div>
+           </div>`
+        : `<div class="page-front bg-stone-900 border border-stone-700/50" style="border-radius: 0 12px 12px 0;">
+              <div class="w-full h-1/2 overflow-hidden">${imgHtml}</div>
+              <div class="p-6 h-1/2 flex flex-col justify-center">
+                <p class="text-orange-400 text-xs tracking-widest uppercase mb-2">${p.tag}</p>
+                <h3 class="text-stone-100 font-bold text-lg leading-tight mb-3">${p.title}</h3>
+                <p class="text-stone-400 text-sm leading-relaxed">${p.text}</p>
+                <p class="text-stone-600 text-xs mt-3">Pagina ${i+1} di ${totalPages}</p>
+              </div>
+           </div>
+           <div class="page-back bg-stone-800/50 border border-stone-700/30" style="border-radius: 12px 0 0 12px;">
+             <div class="w-full h-full flex items-center justify-center">
+               <p class="text-stone-700 text-xs rotate-180" style="writing-mode: vertical-rl;">Automotive — Simone</p>
+             </div>
+           </div>`;
+
+      pageEl.innerHTML = textSide;
+      wrapper.appendChild(pageEl);
+    });
+
+    // Genera indicatori
+    // +1 per copertina
+    for (let i = 0; i <= totalPages; i++) {
+      const dot = document.createElement("div");
+      dot.className = "page-dot" + (i === 0 ? " active" : "");
+      dot.addEventListener("click", () => goToPage(i - 1));
+      indicator.appendChild(dot);
+    }
+
+    function updateIndicator() {
+      document.querySelectorAll(".page-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentPage + 1);
+      });
+    }
+
+    function updateCounter() {
+      if (currentPage === -1) {
+        counter.textContent = "Copertina";
+      } else {
+        counter.textContent = `Pagina ${currentPage + 1} di ${totalPages}`;
+      }
+    }
+
+    function updateButtons() {
+      prevBtn.disabled = currentPage === -1;
+      nextBtn.disabled = currentPage === totalPages - 1;
+    }
+
+    function goToPage(index) {
+      if (index < -1 || index >= totalPages) return;
+
+      // Mostra/nascondi copertina
+      const cover = document.getElementById("coverPage");
+      if (index >= 0) {
+        cover.style.opacity = "0";
+        cover.style.pointerEvents = "none";
+      } else {
+        cover.style.opacity = "1";
+        cover.style.pointerEvents = "auto";
+      }
+
+      if (index > currentPage) {
+        // Avanza: flippa le pagine da currentPage+1 a index
+        for (let i = currentPage + 1; i <= index; i++) {
+          const p = document.getElementById(`page-${i}`);
+          if (p) {
+            // Le pagine flippate vanno sotto quelle non ancora flippate
+            p.style.zIndex = totalPages - i;
+            setTimeout(() => p.classList.add("flipped"), (i - currentPage - 1) * 80);
+          }
+        }
+      } else {
+        // Torna indietro: de-flippa da currentPage fino a index+1
+        for (let i = currentPage; i > index; i--) {
+          const p = document.getElementById(`page-${i}`);
+          if (p) {
+            // Durante il de-flip la pagina deve stare SOPRA tutte le altre
+            // usiamo un z-index altissimo decrescente per rispettare l'ordine
+            p.style.zIndex = totalPages + (currentPage - i) + 10;
+            setTimeout(() => {
+              p.classList.remove("flipped");
+              // Dopo l'animazione ripristina z-index naturale
+              setTimeout(() => {
+                p.style.zIndex = totalPages - i;
+              }, 950);
+            }, (currentPage - i) * 80);
+          }
+        }
+      }
+
+      currentPage = index;
+      updateIndicator();
+      updateCounter();
+      updateButtons();
+    }
+
+    // Frecce
+    prevBtn.addEventListener("click", () => {
+      stopAutoPlay();
+      goToPage(currentPage - 1);
+    });
+    nextBtn.addEventListener("click", () => {
+      stopAutoPlay();
+      goToPage(currentPage + 1);
+    });
+
+    // Tastiera
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        stopAutoPlay();
+        goToPage(currentPage + 1);
+      }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        stopAutoPlay();
+        goToPage(currentPage - 1);
+      }
+    });
+
+    // Auto-play
+    function startAutoPlay() {
+      autoPlay = true;
+      playIcon.classList.add("hidden");
+      pauseIcon.classList.remove("hidden");
+      scheduleNext();
+    }
+
+    function stopAutoPlay() {
+      autoPlay = false;
+      playIcon.classList.remove("hidden");
+      pauseIcon.classList.add("hidden");
+      clearTimeout(autoTimer);
+      progressBar.style.transition = "none";
+      progressBar.style.width = "0%";
+    }
+
+    function scheduleNext() {
+      progressBar.style.transition = "none";
+      progressBar.style.width = "0%";
+      setTimeout(() => {
+        progressBar.style.transition = `width ${AUTO_INTERVAL}ms linear`;
+        progressBar.style.width = "100%";
+      }, 50);
+
+      autoTimer = setTimeout(() => {
+        if (!autoPlay) return;
+        if (currentPage < totalPages - 1) {
+          goToPage(currentPage + 1);
+          scheduleNext();
+        } else {
+          // Torna alla copertina
+          goToPage(-1);
+          scheduleNext();
+        }
+      }, AUTO_INTERVAL);
+    }
+
+    autoPlayBtn.addEventListener("click", () => {
+      if (autoPlay) stopAutoPlay();
+      else startAutoPlay();
+    });
+
+    // Init
+    updateCounter();
+    updateButtons();
+  </script>
+</body>
+</html>
