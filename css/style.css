@@ -1,0 +1,121 @@
+/* Scrollbar personalizzata */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #1c1917;
+}
+::-webkit-scrollbar-thumb {
+    background: #44403c;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f97316;
+}
+
+/* Testo gradiente */
+.gradient-text {
+    background: linear-gradient(135deg, #fafaf9 0%, #a8a29e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Sfondo effetto marmo */
+.marble-bg {
+    background-color: #1c1917;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(120, 113, 108, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(249, 115, 22, 0.1) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(68, 64, 60, 0.2) 0px, transparent 50%);
+}
+
+/* Animazioni reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card progetti */
+.project-card {
+    overflow: hidden;
+    position: relative;
+}
+.project-card img {
+    transition: transform 0.6s ease;
+}
+.project-card:hover img {
+    transform: scale(1.1);
+}
+.project-overlay {
+    background: linear-gradient(to top, rgba(28, 25, 23, 0.95) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.project-card:hover .project-overlay {
+    opacity: 1;
+} 
+
+/* Timeline */
+.timeline-line::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #f97316, #44403c);
+    transform: translateX(-50%);
+}
+@media (max-width: 768px) {
+    .timeline-line::before {
+        left: 20px;
+    }
+}
+/* Card click affordance - mobile optimization */
+@media (max-width: 768px) {
+    .project-card {
+        /* Ombra più pronunciata su mobile per indicare elevazione */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Su mobile, mostra sempre il chevron in alto a destra con opacità ridotta */
+    .project-card .absolute.top-4.right-4 {
+        opacity: 0.6;
+    }
+    
+    /* Feedback tattile al tap */
+    .project-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Assicurati che il cursore sia pointer su tutte le card cliccabili */
+.project-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(249, 115, 22, 0.1);
+}
+
+/* Hover states per desktop */
+@media (hover: hover) {
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.15), 0 10px 10px -5px rgba(249, 115, 22, 0.1);
+    }
+    
+    .project-card:hover .absolute.top-4.right-4 {
+        opacity: 1;
+    }
+}
+
+/* Fix per link annidati - rimuovi stili di default */
+.project-card a {
+    text-decoration: none;
+    color: inherit;
+}
